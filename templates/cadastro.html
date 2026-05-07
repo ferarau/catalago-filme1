@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - DevFLIX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-logo">
+                <h1 class="logo">Dev<span>FLIX</span></h1>
+            </div>
+
+            <h2 class="login-title">Criar Conta</h2>
+            <p class="login-subtitle">Cadastre-se para gerir o seu catálogo</p>
+
+            {% if erro %}
+            <div class="login-error">
+                <span class="login-error-icon">⚠️</span>
+                <span>{{ erro }}</span>
+            </div>
+            {% endif %}
+
+            <form method="POST" class="login-form">
+                <div class="input-group">
+                    <input type="text" name="nome" id="nome" placeholder=" " required autocomplete="name">
+                    <label for="nome">Nome Completo</label>
+                    <div class="input-highlight"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" id="email" placeholder=" " required autocomplete="email">
+                    <label for="email">E-mail</label>
+                    <div class="input-highlight"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="password" id="password" placeholder=" " required autocomplete="new-password">
+                    <label for="password">Senha (mín. 8 caracteres + especial)</label>
+                    <div class="input-highlight"></div>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <span class="btn-login-text">Cadastrar</span>
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p><a href="{{ url_for('login') }}" style="color: #e50914; text-decoration: none; font-weight: bold;">Já tem uma conta? Entre aqui.</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DevFLIX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-logo">
+                <h1 class="logo">Dev<span>FLIX</span></h1>
+            </div>
+
+            <h2 class="login-title">Entrar</h2>
+            <p class="login-subtitle">Acesse seu catálogo de filmes</p>
+
+            {% if erro %}
+            <div class="login-error" id="login-error">
+                <span class="login-error-icon">⚠️</span>
+                <span>{{ erro }}</span>
+            </div>
+            {% endif %}
+
+            <form method="POST" class="login-form" id="login-form">
+                <div class="input-group">
+                    <input type="email" name="email" id="email" placeholder=" " required autocomplete="email">
+                    <label for="email">Email</label>
+                    <div class="input-highlight"></div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="password" id="password" placeholder=" " required
+                        autocomplete="current-password">
+                    <label for="password">Senha</label>
+                    <div class="input-highlight"></div>
+                </div>
+
+                <button type="submit" class="btn-login" id="btn-login">
+                    <span class="btn-login-text">Entrar</span>
+                    <span class="btn-login-loader" style="display:none;">
+                        <span class="btn-spinner"></span>
+                    </span>
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p style="margin-bottom: 15px; color: #8c8c8c;">Novo por aqui?</p>
+                <a href="{{ url_for('cadastro') }}" style="color: #fff; text-decoration: none; font-weight: bold; font-size: 16px;">
+                    Assine agora (Criar conta)
+                </a>
+                <p style="margin-top: 25px; font-size: 12px; color: #555;">🎬 Seu catálogo pessoal de filmes</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const btn = document.getElementById('btn-login');
+
+        form.addEventListener('submit', () => {
+            // Só ativa o loader se o formulário for válido
+            if(form.checkValidity()) {
+                btn.querySelector('.btn-login-text').style.display = 'none';
+                btn.querySelector('.btn-login-loader').style.display = 'flex';
+                btn.disabled = true;
+                btn.style.opacity = '0.8';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
